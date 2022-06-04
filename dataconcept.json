@@ -1,0 +1,10 @@
+{
+    "DateStamp": {
+        "Timestamp": {
+            "username" : "string",
+            "score" : "integer"
+        },
+        "..."
+    },
+    "..."
+}
