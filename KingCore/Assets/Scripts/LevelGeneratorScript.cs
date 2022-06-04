@@ -33,11 +33,13 @@ public class LevelGeneratorScript : MonoBehaviour
         floorTile = Resources.Load("FloorTile");
         tileLength = 2.5f;
 
-        //Instantiate(wallTile, Vector3.right, Quaternion.identity);
-        //MakeWall(Vector3.left * tileLength * 4 - Vector3.left*tileLength/2, 8);
+        //starting floor (starts at height = -2)
         MakeStartingFloor();
-        //MakeFloor(Vector3.down * tileLength * 4, 4);
-        FloorE1(Vector3.up *tileLength * 6);
+        //every following floor is built 8 tile lengths higher than the last.
+        FloorM1(Vector3.up *tileLength * 6);
+        FloorE1(Vector3.up *tileLength * 14);
+        FloorM2(Vector3.up *tileLength * 22);
+        FloorE2(Vector3.up *tileLength * 30);
     }
 
     // Update is called once per frame
@@ -104,10 +106,10 @@ public class LevelGeneratorScript : MonoBehaviour
         MakeWall(levelLoc + Vector3.left * tileLength * 3.5f, 8);
         MakeWall(levelLoc + Vector3.right * tileLength * 3.5f, 8);
         //two floors on the left and right
-        MakeFloor(levelLoc + Vector3.left * tileLength * 2, 2);
+        MakeFloor(levelLoc + Vector3.left * tileLength * 2.5f, 1);
         MakeFloor(levelLoc + Vector3.right * tileLength * 2, 2);
         //a 1-wall on the left
-        MakeFloor(levelLoc + new Vector3(-2.5f, 2, 0) * tileLength, 1);
+        MakeFloor(levelLoc + new Vector3(-0.5f, 2, 0) * tileLength, 1);
         //a middle thing
         MakeFloor(levelLoc + new Vector3(0, 3, 0) * tileLength, 2);
         MakeWall(levelLoc + new Vector3(0.5f, 4, 0) * tileLength, 2);
@@ -115,5 +117,56 @@ public class LevelGeneratorScript : MonoBehaviour
         MakeFloor(levelLoc + new Vector3(-2.5f, 5, 0) * tileLength, 1);
         //and 1 last 1-wall
         MakeFloor(levelLoc + new Vector3(0.5f, 6, 0) * tileLength, 1);
+    }
+
+    public void FloorE2(Vector3 levelLoc){
+        //two 8 walls
+        MakeWall(levelLoc + Vector3.left * tileLength * 3.5f, 8);
+        MakeWall(levelLoc + Vector3.right * tileLength * 3.5f, 8);
+        //center floor
+        MakeFloor(levelLoc, 2);
+        //2-floor up and to the left
+        MakeFloor(levelLoc + new Vector3(-2.0f, 3,0) * tileLength, 2);
+        //2-floor up and to the right
+        MakeFloor(levelLoc + new Vector3(2.0f, 4,0) * tileLength, 2);
+        //repeat the last two lines of code, but higher
+        //2-floor up and to the left
+        MakeFloor(levelLoc + new Vector3(-1.5f, 6,0) * tileLength, 1);
+        //2-floor up and to the right
+        MakeFloor(levelLoc + new Vector3(1.5f, 7,0) * tileLength, 1);
+    }
+
+    public void FloorM1(Vector3 levelLoc){
+        //two 8 walls
+        MakeWall(levelLoc + Vector3.left * tileLength * 3.5f, 8);
+        MakeWall(levelLoc + Vector3.right * tileLength * 3.5f, 8);
+        //two 5 walls on the inside of these
+        MakeWall(levelLoc + new Vector3(-2.5f, 1, 0) * tileLength, 5);
+        MakeWall(levelLoc + new Vector3(2.5f, 1, 0) * tileLength, 5);
+        //two 4 walls on the inside of that.
+        MakeWall(levelLoc + new Vector3(-1.5f, 2, 0) * tileLength, 4);
+        MakeWall(levelLoc + new Vector3(1.5f, 2, 0) * tileLength, 4);
+
+    }
+
+    public void FloorM2(Vector3 levelLoc){
+        //two 8 walls
+        MakeWall(levelLoc + Vector3.left * tileLength * 3.5f, 8);
+        MakeWall(levelLoc + Vector3.right * tileLength * 3.5f, 8);
+        //a 1-floor to fill in a gap
+        MakeFloor(levelLoc + new Vector3(-2.5f, 1, 0) * tileLength, 1);
+        //a 3-wall right next to the 1-floor
+        MakeWall(levelLoc + new Vector3(-1.5f, 1, 0) * tileLength, 3);
+        //a floor to the right
+        MakeFloor(levelLoc + new Vector3(2f, 2, 0) * tileLength, 2);
+        //a wall on top of that
+        MakeWall(levelLoc + new Vector3(1.5f, 3, 0) * tileLength, 4);
+        //a floor on top of that!
+        MakeFloor(levelLoc + new Vector3(2f, 7, 0) * tileLength, 2);
+        //a 2-wall on the top right
+        MakeWall(levelLoc + new Vector3(-2.5f, 5, 0) * tileLength, 3);
+        //and a floor above that!
+        MakeFloor(levelLoc + new Vector3(0.5f, 7, 0) * tileLength, 1);
+
     }
 }

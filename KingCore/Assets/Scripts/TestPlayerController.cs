@@ -72,7 +72,7 @@ public class TestPlayerController : MonoBehaviour
             //jumping
             Vector2 newSpeed = rigidBody.velocity;
             if(feet.IsTouchingLayers(Physics2D.AllLayers)){
-                newSpeed.y = speed * 3;
+                newSpeed.y = speed * 2.5f;
                 /*if(rigidBody.velocity.y > speed * 2){
                     newSpeed.y = speed * 2;
                 }
