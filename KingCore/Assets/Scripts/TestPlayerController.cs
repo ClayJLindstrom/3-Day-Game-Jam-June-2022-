@@ -72,35 +72,38 @@ public class TestPlayerController : MonoBehaviour
             //jumping
             Vector2 newSpeed = rigidBody.velocity;
             if(feet.IsTouchingLayers(Physics2D.AllLayers)){
-                if(rigidBody.velocity.y > speed * 2){
+                newSpeed.y = speed * 3;
+                /*if(rigidBody.velocity.y > speed * 2){
                     newSpeed.y = speed * 2;
                 }
                 else{
                     rigidBody.AddForce(Vector2.up * acceleration * 30);
-                }
+                }*/
             }
             else if(rightSide.IsTouchingLayers(Physics2D.AllLayers)){
                 Debug.Log("right side");
-                if(rigidBody.velocity.y > speed * 2){
+                newSpeed.y = speed * 1.5f;
+                /*if(rigidBody.velocity.y > speed * 2){
                     newSpeed.y = speed * 2;
                 }
-                else if(rigidBody.velocity.x < -speed){
+                else*/ if(rigidBody.velocity.x < -speed){
                     newSpeed.x = -speed;
                 }
                 else{
-                    rigidBody.AddForce(new Vector2(-1,1) * acceleration* 30);
+                    rigidBody.AddForce(new Vector2(-1,0) * acceleration* 30);
                 }
             }
             else if(leftSide.IsTouchingLayers(Physics2D.AllLayers)){
                 Debug.Log("Left side");
-                if(rigidBody.velocity.y > speed * 2){
+                newSpeed.y = speed * 1.5f;
+                /*if(rigidBody.velocity.y > speed * 2){
                     newSpeed.y = speed * 2;
                 }
-                else if(rigidBody.velocity.x > speed){
+                else*/ if(rigidBody.velocity.x > speed){
                     newSpeed.x = speed;
                 }
                 else{
-                    rigidBody.AddForce(new Vector2(1,1) * acceleration* 30);
+                    rigidBody.AddForce(new Vector2(1,0) * acceleration* 30);
                 }
             }
             rigidBody.velocity = newSpeed;
