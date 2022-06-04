@@ -37,7 +37,7 @@ public class LevelGeneratorScript : MonoBehaviour
         //MakeWall(Vector3.left * tileLength * 4 - Vector3.left*tileLength/2, 8);
         MakeStartingFloor();
         //MakeFloor(Vector3.down * tileLength * 4, 4);
-        FloorE1(Vector3.up *tileLength * 7);
+        FloorE1(Vector3.up *tileLength * 6);
     }
 
     // Update is called once per frame
@@ -110,7 +110,7 @@ public class LevelGeneratorScript : MonoBehaviour
         MakeFloor(levelLoc + new Vector3(-2.5f, 2, 0) * tileLength, 1);
         //a middle thing
         MakeFloor(levelLoc + new Vector3(0, 3, 0) * tileLength, 2);
-        MakeWall(levelLoc + new Vector3(0.5f, 4, 0) * tileLength, 1);
+        MakeWall(levelLoc + new Vector3(0.5f, 4, 0) * tileLength, 2);
         //another 1-wall on the left
         MakeFloor(levelLoc + new Vector3(-2.5f, 5, 0) * tileLength, 1);
         //and 1 last 1-wall
