@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private float speed;
     private float acceleration; 
-    private bool maxSpeedReached;
+    private float jumpForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,33 +21,20 @@ public class PlayerController : MonoBehaviour
         acceleration = 5;
         collider = GetComponent<BoxCollider2D>();
         feet = GetComponent<CircleCollider2D>();
-        maxSpeedReached = false;
+        jumpForce = 6;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(rigidBody.velocity.y >= 3f){
-            Vector2 newSpeed = rigidBody.velocity;
-            newSpeed.y = 3f;
-            rigidBody.velocity = newSpeed;
-            
-            if(maxSpeedReached != true){
-                maxSpeedReached = true;
-
-            }
-            else {
-                maxSpeedReached = false;
-            }
-        }
         if(Input.GetKey(KeyCode.RightArrow)){
             rigidBody.AddForce(Vector2.right *acceleration);
         }
         if(Input.GetKey(KeyCode.LeftArrow)){
             rigidBody.AddForce(Vector2.left *acceleration);
         }
-        if(Input.GetKey(KeyCode.UpArrow) && feet.IsTouchingLayers(Physics2D.AllLayers) && !maxSpeedReached){
-            rigidBody.AddForce(Vector2.up *acceleration * 35);
+        if(Input.GetKey(KeyCode.UpArrow) && feet.IsTouchingLayers(Physics2D.AllLayers)){
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
         }
     }
 }
