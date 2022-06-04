@@ -24,4 +24,10 @@ public class CameraScript : MonoBehaviour
         //so long as the player doesn't die.
         transform.Translate(Vector3.up * Time.deltaTime);
     }
+
+    //this function gives away the camera's current height, so that the level editor knows
+    //when it needs to add more levels!
+    public float ReturnHeight(){
+        return transform.position.y;
+    }
 }
