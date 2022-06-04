@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         speed = 5;
         acceleration = 5;
-        collider = GetComponent<Collider2D>();
+        collider = GetComponent<BoxCollider2D>();
         feet = GetComponent<CircleCollider2D>();
         maxSpeedReached = false;
     }
