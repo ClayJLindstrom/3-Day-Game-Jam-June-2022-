@@ -28,7 +28,7 @@ public class LevelGeneratorScript : MonoBehaviour
     void Start()
     {
         cameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraScript>();
-        buildHeight = cameraScript.ReturnHeight();
+        buildHeight = -2f;//cameraScript.ReturnHeight();
         wallTile = Resources.Load("WallTile");
         floorTile = Resources.Load("FloorTile");
         tileLength = 2.5f;
@@ -36,16 +36,40 @@ public class LevelGeneratorScript : MonoBehaviour
         //starting floor (starts at height = -2)
         MakeStartingFloor();
         //every following floor is built 8 tile lengths higher than the last.
-        FloorM1(Vector3.up *tileLength * 6);
-        FloorE1(Vector3.up *tileLength * 14);
-        FloorM2(Vector3.up *tileLength * 22);
-        FloorE2(Vector3.up *tileLength * 30);
+        //FloorM1(Vector3.up *tileLength * 6);
+        //FloorE1(Vector3.up *tileLength * 14);
+        //FloorM2(Vector3.up *tileLength * 22);
+        //FloorE2(Vector3.up *tileLength * 30);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(cameraScript.ReturnHeight() > buildHeight - (tileLength * 8)){
+            GenerateNextFloor();
+            cameraScript.IncreaseSpeed();
+        }
+    }
 
+    public void GenerateNextFloor(){
+        //increase the buildHeight (showing how high our building is now)
+        buildHeight += 8;
+        //pick a random number representing the next level to build.
+        int r = Random.Range(1,5);
+        
+        if(r == 1){
+            FloorE1(Vector3.up *tileLength * buildHeight);
+        }
+        else if(r == 2){
+            FloorE2(Vector3.up *tileLength * buildHeight);
+        }
+        else if(r == 3){
+            FloorM1(Vector3.up *tileLength * buildHeight);
+        }
+        else if(r == 4){
+            FloorM2(Vector3.up *tileLength * buildHeight);
+        }
+        //
     }
 
     //this will make a wall with the base block at "wallLoc" location and the wall "length" blocks high (Works)
