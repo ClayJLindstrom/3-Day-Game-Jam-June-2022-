@@ -61,7 +61,7 @@ public class TestPlayerController : MonoBehaviour
         }
         //moving left
         //if button is pressed, and left side isn't hitting a wall
-        if(Input.GetKey(KeyCode.LeftArrow)){
+        if(Input.GetKey(KeyCode.LeftArrow)&& !leftSide.IsTouchingLayers(Physics2D.AllLayers)){
             if(rigidBody.velocity.x <  -speed){
                 Vector2 newSpeed = rigidBody.velocity;
                 newSpeed.x = -speed;
@@ -77,38 +77,12 @@ public class TestPlayerController : MonoBehaviour
             Vector2 newSpeed = rigidBody.velocity;
             if(feet.IsTouchingLayers(Physics2D.AllLayers)){
                 newSpeed.y = speed * 2.5f;
-                /*if(rigidBody.velocity.y > speed * 2){
-                    newSpeed.y = speed * 2;
-                }
-                else{
-                    rigidBody.AddForce(Vector2.up * acceleration * 30);
-                }*/
             }
             else if(rightSide.IsTouchingLayers(Physics2D.AllLayers)){
-                Debug.Log("right side");
-                newSpeed.y = speed * 1.5f;
-                /*if(rigidBody.velocity.y > speed * 2){
-                    newSpeed.y = speed * 2;
-                }
-                else*/ if(rigidBody.velocity.x < -speed){
-                    newSpeed.x = -speed;
-                }
-                else{
-                    rigidBody.AddForce(new Vector2(-1,0) * acceleration* 30);
-                }
+                WallJumpLeft();
             }
             else if(leftSide.IsTouchingLayers(Physics2D.AllLayers)){
-                Debug.Log("Left side");
-                newSpeed.y = speed * 1.5f;
-                /*if(rigidBody.velocity.y > speed * 2){
-                    newSpeed.y = speed * 2;
-                }
-                else*/ if(rigidBody.velocity.x > speed){
-                    newSpeed.x = speed;
-                }
-                else{
-                    rigidBody.AddForce(new Vector2(1,0) * acceleration* 30);
-                }
+                WallJumpRight();
             }
             rigidBody.velocity = newSpeed;
         }
@@ -128,5 +102,20 @@ public class TestPlayerController : MonoBehaviour
         }
         rigidBody.velocity = newSpeed;
 
+    }
+
+    public void WallJumpLeft(){
+        Debug.Log("right side");
+        newSpeed.y = speed * 1.5f;
+        /*if(rigidBody.velocity.y > speed * 2){
+            newSpeed.y = speed * 2;
+        }
+        else*/ if(rigidBody.velocity.x < -speed){
+            newSpeed.x = -speed;
+        }
+        else{
+            rigidBody.AddForce(new Vector2(-1,0) * acceleration* 30);
+        }
+        rigidBody.velocity = newSpeed;
     }
 }
