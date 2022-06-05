@@ -2,7 +2,6 @@
 
 body {
   font-family: "Helvetica", sans-serif;
-  background-size: 250%;
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -11,33 +10,66 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 100%;
-  background-color: white;
-  color: black;
+  color: white;
+  background-color: black;
+  background-size: 25%;
+  background-image: url("./Background.jpg");
+  background-repeat: repeat;
+  height: 100%;
 }
 
-.head, footer {
+header, footer {
   text-align: center;
   display: flex;
   flex-flow: column wrap; 
+}
+
+/* Column container */
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 2;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/right column */
+.rside {
+  flex: 40%; /* Set the width of the sidebar */
+}
+
+/* Main column */
+.lside {
+  flex: 60%; /* Set the width of the main content */   
 }
 
 img {
   display: block;
   margin: auto;
   border-radius: 15px;
-  border: 0px ;
+  border: 0px;
+  width: 200px;
+  height: 50%;
+}
+
+iframe {
+  display: block;
+  
+  border-radius: 15px;
+  border: 0px;
 }
 
 h1 {
   font-family: "Arial", sans-serif;
-  text-align: center;
   margin: 15px 10px;
   font-size: 28px;
 }
 
 h2 { 
-  text-align: center;
-  font-size: 22px;
+  font-size: 24px;
+}
+
+h3 { 
+  font-size: 20px;
 }
 
 p, a, button, table, ul, li {
@@ -45,10 +77,5 @@ p, a, button, table, ul, li {
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
-  color: black;
-}
-
-.dark-mode {
-  background-color: black;
   color: white;
 }
