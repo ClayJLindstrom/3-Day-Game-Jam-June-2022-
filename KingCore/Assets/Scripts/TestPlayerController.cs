@@ -9,6 +9,9 @@ public class TestPlayerController : MonoBehaviour
     private Collider2D collider, leftSide, rightSide;
     private CircleCollider2D feet;
 
+    //to help us keep track of the speed
+    private Vector2 newSpeed;
+
     private float speed;
     private float acceleration; 
     private bool maxSpeedReached;
@@ -17,6 +20,7 @@ public class TestPlayerController : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         rigidBody = GetComponent<Rigidbody2D>();
+        newSpeed = rigidBody.velocity;
         speed = 5;
         acceleration = 10;
         collider = GetComponent<BoxCollider2D>();
@@ -108,5 +112,21 @@ public class TestPlayerController : MonoBehaviour
             }
             rigidBody.velocity = newSpeed;
         }
+    }
+
+    public void WallJumpRight(){
+        Debug.Log("Left side");
+        newSpeed.y = speed * 1.5f;
+        /*if(rigidBody.velocity.y > speed * 2){
+            newSpeed.y = speed * 2;
+        }
+        else*/ if(rigidBody.velocity.x > speed){
+            newSpeed.x = speed;
+        }
+        else{
+            rigidBody.AddForce(new Vector2(1,0) * acceleration* 30);
+        }
+        rigidBody.velocity = newSpeed;
+
     }
 }

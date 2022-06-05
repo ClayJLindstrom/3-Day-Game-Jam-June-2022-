@@ -9,6 +9,8 @@ public class CameraScript : MonoBehaviour
     private Transform playerPos;
     //so we can edit how fast the camera is moving upward
     private float cameraSpeed;
+    //rate at which the speed increases
+    private float Acceleration = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class CameraScript : MonoBehaviour
         //and then we'll have it gradually move upward (one unit per second) as the game goes on.
         //so long as the player doesn't die.
         transform.Translate(Vector3.up * Time.deltaTime * cameraSpeed);
-        if(playerPos.position.y < (transform.position.y- 20)){
+        if(playerPos.position.y < (transform.position.y- 15)){
             SceneManager.LoadScene("TestScene2");
         }
         
@@ -40,7 +42,7 @@ public class CameraScript : MonoBehaviour
     }
 
     public void IncreaseSpeed(){
-        cameraSpeed += Time.deltaTime * 3;
+        cameraSpeed += Acceleration;
         Debug.Log(cameraSpeed);
     }
 }
