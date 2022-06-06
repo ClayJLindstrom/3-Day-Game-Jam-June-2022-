@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float speed;
     private float acceleration; 
     private float jumpUpForce;
+    //for controlling which way the character is facing
+    private bool facingRight;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +25,13 @@ public class PlayerController : MonoBehaviour
         acceleration = 10;
         collider = GetComponent<BoxCollider2D>();
 
-        anime = GetComponent<Animator>();
+        anime = transform.Find("SpriteManager").GetComponent<Animator>();
         //the left and right sides are so that we can tell if this guy is touching a wall or not.
         leftSide = gameObject.transform.Find("LeftSide").GetComponent<BoxCollider2D>();
         rightSide = gameObject.transform.Find("RightSide").GetComponent<BoxCollider2D>();
         feet = GetComponent<CircleCollider2D>();
         jumpUpForce = 12.5f;
+        facingRight = true;
     }
 
     // Update is called once per frame
@@ -36,7 +39,8 @@ public class PlayerController : MonoBehaviour
     {
         //moving right
         //if pressing key, and we're not hitting a wall
-        if(Input.GetKey(KeyCode.RightArrow) && !rightSide.IsTouchingLayers(Physics2D.AllLayers)){
+        if(Input.GetKey(KeyCode.RightArrow)){
+            facingRight = true;
             if(rigidBody.velocity.x > speed){
                 Vector2 newSpeed = rigidBody.velocity;
                 newSpeed.x = speed;
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
         //moving left
         //if button is pressed, and left side isn't hitting a wall
         if(Input.GetKey(KeyCode.LeftArrow)){
+            facingRight = false;
             if(rigidBody.velocity.x <  -speed){
                 Vector2 newSpeed = rigidBody.velocity;
                 newSpeed.x = -speed;
@@ -73,7 +78,8 @@ public class PlayerController : MonoBehaviour
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpUpForce/6);
             }
         }
-        else if(leftSide.IsTouchingLayers(Physics2D.AllLayers) && Input.GetKey(KeyCode.RightArrow)){
+        if(feet.IsTouchingLayers(Physics2D.AllLayers)){}
+        if(leftSide.IsTouchingLayers(Physics2D.AllLayers) && Input.GetKey(KeyCode.RightArrow)){
                 Debug.Log("right side");
                 rigidBody.velocity = new Vector2(speed, jumpUpForce*3/5);
         }
@@ -81,17 +87,33 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Left side");
                 rigidBody.velocity = new Vector2(-speed, jumpUpForce*3/5);
         }else if(BodyPartTouchingWall() && Input.GetKey(KeyCode.DownArrow)){
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, -jumpUpForce/6);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, -jumpUpForce/2);
         }
 
         //Animation work
         //running
-        if (Mathf.Abs(rigidBody.velocity.x) > 0.5f){
+        if ((Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.LeftArrow)) && feet.IsTouchingLayers(Physics2D.AllLayers)){
             anime.SetBool("isRunning", true);
         }
-        else{anime.SetBool("climbing", false);}
+        else{anime.SetBool("isRunning", false);}
         //jumping
         anime.SetFloat("yVelocity", rigidBody.velocity.y);
+        //climbing
+        if(Input.GetKey(KeyCode.UpArrow) && (BodyPartTouchingWall())){
+            anime.SetBool("climbing", true);
+        }
+        else{
+            anime.SetBool("climbing", false);
+        }
+    }
+
+    void FixedUpdate(){
+        if(facingRight && transform.Find("SpriteManager").transform.localScale.x < 0){
+            Flip();
+        }
+        if(!facingRight && transform.Find("SpriteManager").transform.localScale.x > 0){
+            Flip();
+        }
     }
 
 
@@ -99,5 +121,10 @@ public class PlayerController : MonoBehaviour
         return 
         leftSide.IsTouchingLayers(Physics2D.AllLayers) ||
         rightSide.IsTouchingLayers(Physics2D.AllLayers);
+    }
+
+    private void Flip(){
+        Debug.Log("Flipped");
+        transform.Find("SpriteManager").transform.localScale = new Vector3(-transform.Find("SpriteManager").transform.localScale.x, transform.Find("SpriteManager").transform.localScale.y, 1);
     }
 }

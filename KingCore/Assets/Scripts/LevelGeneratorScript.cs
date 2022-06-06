@@ -20,6 +20,8 @@ public class LevelGeneratorScript : MonoBehaviour
     private CameraScript cameraScript;
     //these will be the blocks we spawn for the floors and walls.
     private Object wallTile, floorTile;
+    //the wall sprites
+    private Object wallSprite1, wallSprite2, wallSprite3, wallSprite4;
     //so we know the side length of each tile
     private float tileLength;
     //so we can keep track of how high we have built our tower
@@ -31,6 +33,10 @@ public class LevelGeneratorScript : MonoBehaviour
         buildHeight = -2f;//cameraScript.ReturnHeight();
         wallTile = Resources.Load("WallTile");
         floorTile = Resources.Load("FloorTile");
+        wallSprite1 = Resources.Load("WallSprite1");
+        wallSprite2 = Resources.Load("WallSprite2");
+        wallSprite3 = Resources.Load("WallSprite3");
+        wallSprite4 = Resources.Load("WallSprite4");
         tileLength = 2.5f;
 
         //starting floor (starts at height = -2)
@@ -69,7 +75,8 @@ public class LevelGeneratorScript : MonoBehaviour
         else if(r == 4){
             FloorM2(Vector3.up *tileLength * buildHeight);
         }
-        //
+        //and then the background
+        GenerateBackground(Vector3.up *tileLength * buildHeight);
     }
 
     //this will make a wall with the base block at "wallLoc" location and the wall "length" blocks high (Works)
@@ -123,6 +130,8 @@ public class LevelGeneratorScript : MonoBehaviour
         MakeFloor(new Vector3(-2, 3, 0) * tileLength, 2);
         //we'll actually add one more for good measure, 
         MakeFloor(new Vector3(1, 4, 0) * tileLength, 2);
+        //now we generate the background
+        GenerateBackground(Vector3.down * tileLength * 2);
     }
 
     public void FloorE1(Vector3 levelLoc){
@@ -131,7 +140,7 @@ public class LevelGeneratorScript : MonoBehaviour
         MakeWall(levelLoc + Vector3.right * tileLength * 3.5f, 8);
         //two floors on the left and right
         MakeFloor(levelLoc + Vector3.left * tileLength * 2.5f, 1);
-        MakeFloor(levelLoc + Vector3.right * tileLength * 2, 2);
+        MakeFloor(levelLoc + Vector3.right * tileLength * 1.5f, 1);
         //a 1-wall on the left
         MakeFloor(levelLoc + new Vector3(-0.5f, 2, 0) * tileLength, 1);
         //a middle thing
@@ -192,5 +201,35 @@ public class LevelGeneratorScript : MonoBehaviour
         //and a floor above that!
         MakeFloor(levelLoc + new Vector3(0.5f, 7, 0) * tileLength, 1);
 
+    }
+
+    public void GenerateBackground(Vector3 levelLoc){
+        int r = 1;
+        //we make an 8 * 8 layout of the level built of the wall sprites,
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j< 8; j++){
+                //first, we pick a random tile
+                r = Random.Range(1,25);
+                if(r == 1){
+                    //then, starting from the farthest corner to the left, we instantiate them
+                    Instantiate(wallSprite2, levelLoc + new Vector3(-3.5f + j, i, 2) * tileLength, Quaternion.identity);
+                }
+                else if(r == 2){
+                    //then, starting from the farthest corner to the left, we instantiate them
+                    Instantiate(wallSprite3, levelLoc + new Vector3(-3.5f + j, i, 2) * tileLength, Quaternion.identity);
+                }
+                else if(r == 3){
+                    //then, starting from the farthest corner to the left, we instantiate them
+                    Instantiate(wallSprite4, levelLoc + new Vector3(-3.5f + j, i, 2) * tileLength, Quaternion.identity);
+                }
+                else if( r == 4){
+                    //do nothing
+                    //this is just to produce an empty tile.
+                }
+                else{
+                    Instantiate(wallSprite1, levelLoc + new Vector3(-3.5f + j, i, 2) * tileLength, Quaternion.identity);
+                }
+            }
+        }
     }
 }
