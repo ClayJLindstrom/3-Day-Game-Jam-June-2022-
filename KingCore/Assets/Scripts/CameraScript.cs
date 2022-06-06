@@ -42,12 +42,12 @@ public class CameraScript : MonoBehaviour
         if(playerPos.position.y < (transform.position.y- 15)){
             //reveal the time
             Debug.Log("Final time: " + Time.time);
-            StartCoroutine(UploadScore((int)(Time.time * 100)));
+            StartCoroutine(UploadScore((int)(Time.timeSinceLevelLoad * 100)));
             SceneManager.LoadScene("Login&LeaderBoard");
             
         }
         //this will show the player how high their current score is
-        scoreBox.text = ((int)(Time.time * 100)).ToString();
+        scoreBox.text = ((int)(Time.timeSinceLevelLoad * 100)).ToString();
 
         if (Input.GetKey(KeyCode.Escape))
         {
