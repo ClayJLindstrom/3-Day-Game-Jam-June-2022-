@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5743aecefcd170cf893d6465c362f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboard: {fileID: 0}
+  leaderboard: {fileID: 590793497526626352, guid: 83826a5ab736a439b99bbca195bce5db, type: 3}
   playerNameInputfield: {fileID: 0}
