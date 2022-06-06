@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody; 
     private Collider2D collider, leftSide, rightSide;
     private CircleCollider2D feet;
+    //the animator
+    private Animator anime;
 
     private float speed;
     private float acceleration; 
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
         speed = 5;
         acceleration = 10;
         collider = GetComponent<BoxCollider2D>();
+
+        anime = GetComponent<Animator>();
         //the left and right sides are so that we can tell if this guy is touching a wall or not.
         leftSide = gameObject.transform.Find("LeftSide").GetComponent<BoxCollider2D>();
         rightSide = gameObject.transform.Find("RightSide").GetComponent<BoxCollider2D>();
@@ -79,6 +83,15 @@ public class PlayerController : MonoBehaviour
         }else if(BodyPartTouchingWall() && Input.GetKey(KeyCode.DownArrow)){
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, -jumpUpForce/6);
         }
+
+        //Animation work
+        //running
+        if (Mathf.Abs(rigidBody.velocity.x) > 0.5f){
+            anime.SetBool("isRunning", true);
+        }
+        else{anime.SetBool("climbing", false);}
+        //jumping
+        anime.SetFloat("yVelocity", rigidBody.velocity.y);
     }
 
 
