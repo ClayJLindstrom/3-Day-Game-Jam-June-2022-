@@ -1,3 +1,2 @@
 npm i terser
 npx terser -c -m -o index.min.js -- index.js
-npx terser -c -m -o server.min.js -- server.js

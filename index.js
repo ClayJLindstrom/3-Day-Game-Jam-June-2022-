@@ -11,7 +11,7 @@ app.index = {
         $(`footer`).html(`&copy; ${app.index.year} Game Jam -- Parkour`); 
     },
     init: function(){
-        app.index.footer();
+        
     }
 };
 
@@ -19,9 +19,4 @@ app.index = {
 
 $(document).ready(function(){
     app.index.footer();
-
-    (firedb.ref(app.index.datestamp())).on(`value`, function(snapshot){
-        let data = snapshot.val();
-        console.log(data);
-    });
 });
