@@ -34,7 +34,7 @@ public class CameraScript : MonoBehaviour
             //reveal the time
             Debug.Log("Final time: " + Time.time);
             StartCoroutine(UploadScore(30));
-            SceneManager.LoadScene("TestScene2");
+            SceneManager.LoadScene("Login&LeaderBoard");
             
         }
         
