@@ -10,10 +10,10 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 100%;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: white;
   background-size: 15%;
-  background-image: url("./Images/Background.jpg");
+  background-image: url("./Images/background.png");
   background-repeat: repeat;
   height: 100%;
 }
@@ -77,5 +77,5 @@ p, a, button, table, ul, li {
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
-  color: white;
+  color: black;
 }
