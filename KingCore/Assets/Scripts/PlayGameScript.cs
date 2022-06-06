@@ -20,7 +20,7 @@ public class PlayGameScript : MonoBehaviour
     }
 
     public void BeginGame(){
-        PlayerPrefs.SetString("PlayerID", "Jackson");
+        //PlayerPrefs.SetString("PlayerID", "Jackson");
         SceneManager.LoadScene("TestScene2");
     }
 }
