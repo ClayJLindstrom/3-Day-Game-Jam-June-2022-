@@ -20,7 +20,7 @@ public class Leaderboard : MonoBehaviour
     {
         bool done = false;
         string playerID = PlayerPrefs.GetString("PlayerID");
-        LootLockerSDKManager.SubmitScore("howdy", scoreToUpload, leaderboardID, (response) =>
+        LootLockerSDKManager.SubmitScore(playerID, scoreToUpload, leaderboardID, (response) =>
          {
              if(response.success)
              {

@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
         {
             if(response.success)
             {
-                Debug.Log("Succesfully set player name");
+                Debug.Log("Succesfully set player name: " + playerNameInputfield.text);
             }
             else
             {

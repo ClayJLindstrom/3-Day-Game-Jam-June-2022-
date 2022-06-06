@@ -21,6 +21,8 @@ public class CameraScript : MonoBehaviour
         startingPos.y = playerPos.position.y;
         transform.position = startingPos;
         cameraSpeed = 1;
+
+        Debug.Log(PlayerPrefs.GetString("playerName"));
     }
 
     // Update is called once per frame
@@ -48,12 +50,11 @@ public class CameraScript : MonoBehaviour
 
     public void IncreaseSpeed(){
         cameraSpeed += Acceleration;
-        Debug.Log(cameraSpeed);
     }
 
     IEnumerator UploadScore(int score){
     // send time to server:
-    yield return leaderboard.SubmitScoreRoutine(20);
+    yield return leaderboard.SubmitScoreRoutine(37);
 
 }
 }
