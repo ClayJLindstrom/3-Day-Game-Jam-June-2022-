@@ -298,10 +298,8 @@ RectTransform:
   m_Children:
   - {fileID: 904575374}
   - {fileID: 1585672462}
-  - {fileID: 283300512}
-  - {fileID: 1543171574}
   m_Father: {fileID: 801129447}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.29748258, y: 0.18425275}
   m_AnchorMax: {x: 0.7044477, y: 1}
@@ -754,19 +752,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283300511}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.40754104, y: 0.8075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 245515342}
-  m_Father: {fileID: 65601106}
+  m_Father: {fileID: 801129447}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.27689528, y: 0}
-  m_AnchorMax: {x: 0.71400005, y: 0.063}
-  m_AnchoredPosition: {x: 2.999939, y: -75.5}
-  m_SizeDelta: {x: 0.29800415, y: 13.607208}
+  m_AnchorMin: {x: 0.41030508, y: 0.024590164}
+  m_AnchorMax: {x: 0.5876738, y: 0.074}
+  m_AnchoredPosition: {x: 0.9844055, y: 2.5}
+  m_SizeDelta: {x: 196.08896, y: 18.579712}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283300513
 MonoBehaviour:
@@ -1008,6 +1006,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 124215771}
+  - {fileID: 1543171574}
+  - {fileID: 283300512}
   - {fileID: 65601106}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1344,8 +1344,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "ClayStation\u200B"
+  m_text: "State Thy Title Here!\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -1555,8 +1555,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1696,19 +1696,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543171573}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.40754104, y: 0.8075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 644565025}
-  m_Father: {fileID: 65601106}
-  m_RootOrder: 3
+  m_Father: {fileID: 801129447}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.23, y: 0}
-  m_AnchorMax: {x: 0.77641493, y: 0.063}
-  m_AnchoredPosition: {x: -0.44400024, y: -33.5}
-  m_SizeDelta: {x: 6.6340027, y: 7}
+  m_AnchorMin: {x: 0.39034748, y: 0.10953552}
+  m_AnchorMax: {x: 0.6183263, y: 0.16785932}
+  m_AnchoredPosition: {x: -1.887085, y: -0.6596985}
+  m_SizeDelta: {x: 246.37265, y: 8.972504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543171575
 MonoBehaviour:
@@ -1767,7 +1767,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 20
+  m_GlobalPointSize: 25
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: ClayStation
+  m_Text: State Thy Title Here!
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
