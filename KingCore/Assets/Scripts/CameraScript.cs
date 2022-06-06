@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraScript : MonoBehaviour
 {
+    public Leaderboard leaderboard;
     //to track the location of the player!
     private Transform playerPos;
     //so we can edit how fast the camera is moving upward
@@ -30,9 +31,11 @@ public class CameraScript : MonoBehaviour
         //so long as the player doesn't die.
         transform.Translate(Vector3.up * Time.deltaTime * cameraSpeed);
         if(playerPos.position.y < (transform.position.y- 15)){
-            SceneManager.LoadScene("TestScene2");
             //reveal the time
             Debug.Log("Final time: " + Time.time);
+            StartCoroutine(UploadScore(30));
+            SceneManager.LoadScene("TestScene2");
+            
         }
         
     }
@@ -47,4 +50,12 @@ public class CameraScript : MonoBehaviour
         cameraSpeed += Acceleration;
         Debug.Log(cameraSpeed);
     }
+
+    IEnumerator UploadScore(int score){
+    // send time to server:
+    yield return leaderboard.SubmitScoreRoutine(20);
+
 }
+}
+
+
