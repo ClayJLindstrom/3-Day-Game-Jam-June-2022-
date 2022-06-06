@@ -31,6 +31,8 @@ public class CameraScript : MonoBehaviour
         transform.Translate(Vector3.up * Time.deltaTime * cameraSpeed);
         if(playerPos.position.y < (transform.position.y- 15)){
             SceneManager.LoadScene("TestScene2");
+            //reveal the time
+            Debug.Log("Final time: " + Time.time);
         }
         
     }
