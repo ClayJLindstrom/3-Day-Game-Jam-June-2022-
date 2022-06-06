@@ -35,9 +35,14 @@ public class CameraScript : MonoBehaviour
         if(playerPos.position.y < (transform.position.y- 15)){
             //reveal the time
             Debug.Log("Final time: " + Time.time);
-            StartCoroutine(UploadScore(30));
+            StartCoroutine(UploadScore((int)(Time.time * 100)));
             SceneManager.LoadScene("Login&LeaderBoard");
             
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
         }
         
     }
@@ -54,7 +59,7 @@ public class CameraScript : MonoBehaviour
 
     IEnumerator UploadScore(int score){
     // send time to server:
-    yield return leaderboard.SubmitScoreRoutine(37);
+    yield return leaderboard.SubmitScoreRoutine(score);
 
 }
 }
