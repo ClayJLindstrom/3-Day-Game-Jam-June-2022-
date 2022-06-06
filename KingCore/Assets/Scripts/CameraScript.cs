@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CameraScript : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class CameraScript : MonoBehaviour
     private float cameraSpeed;
     //rate at which the speed increases
     private float Acceleration = 0.05f;
+
+    private TMP_Text scoreBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,9 @@ public class CameraScript : MonoBehaviour
         startingPos.y = playerPos.position.y;
         transform.position = startingPos;
         cameraSpeed = 1;
+
+        scoreBox = GameObject.Find("Canvas").transform.Find("CurrentScore").GetComponent<TMP_Text>();
+        scoreBox.text = "0";
 
         Debug.Log(PlayerPrefs.GetString("playerName"));
     }
@@ -39,6 +46,8 @@ public class CameraScript : MonoBehaviour
             SceneManager.LoadScene("Login&LeaderBoard");
             
         }
+        //this will show the player how high their current score is
+        scoreBox.text = ((int)(Time.time * 100)).ToString();
 
         if (Input.GetKey(KeyCode.Escape))
         {
