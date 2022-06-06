@@ -33,29 +33,22 @@ header, footer {
 
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/right column */
-.rside {
-  flex: 40%; /* Set the width of the sidebar */
-}
+.rside {flex: 25%; /* Set the width of the sidebar */}
 
 /* Main column */
-.lside {
-  flex: 60%; /* Set the width of the main content */   
+.lside {flex: 75%; /* Set the width of the main content */ }
+
+
+iframe, img {
+  display: block;
+  border-radius: 15px;
+  border: 0px;
 }
 
 img {
-  display: block;
+  width: 20%;
+  height: 25%;
   margin: auto;
-  border-radius: 15px;
-  border: 0px;
-  width: 200px;
-  height: 50%;
-}
-
-iframe {
-  display: block;
-  
-  border-radius: 15px;
-  border: 0px;
 }
 
 h1 {
@@ -66,10 +59,12 @@ h1 {
 
 h2 { 
   font-size: 24px;
+  text-align: center;
 }
 
 h3 { 
   font-size: 20px;
+  text-align: center;
 }
 
 p, a, button, table, ul, li {
